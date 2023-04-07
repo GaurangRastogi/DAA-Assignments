@@ -5,7 +5,7 @@ using namespace std;
 
 
 //if we can reach sink from source return true
-//else if it is not possible retur false;
+//else if it is not possible return false;
  
 bool bfs(vector<vector<int>>&resiGraph,int V,int source,int sink,vector<int>&parent){
 
@@ -37,16 +37,13 @@ bool bfs(vector<vector<int>>&resiGraph,int V,int source,int sink,vector<int>&par
 int fordFulkerson(vector<vector<int>>&graph,int V,int source,int sink){
 
 
-    vector<vector<int>>resiGraph(V);
+    vector<vector<int>>resiGraph(V,vector<int>(V));
     vector<int>parent(V);
 
     for(int i=0;i<V;i++){
-        vector<int>row;
-        for(int j=0;j<graph[i].size();j++){
-            row.push_back(graph[i][j]);
+        for(int j=0;j<V;j++){
+            resiGraph[i][j]=graph[i][j];
         }
-
-        resiGraph.push_back(row);
     }
 
     int max_flow=0;
@@ -63,7 +60,7 @@ int fordFulkerson(vector<vector<int>>&graph,int V,int source,int sink){
         for(int v=sink;v!=source;v=parent[v]){
             int u=parent[v];
             resiGraph[u][v]-=path_flow;
-            resiGraph[u][v]+=path_flow;
+            resiGraph[v][u]+=path_flow;
         }
 
         max_flow+=path_flow;
@@ -73,23 +70,24 @@ int fordFulkerson(vector<vector<int>>&graph,int V,int source,int sink){
 }
 int main(){
 
-    int V;
+    int V,flow;
+
+    cout<<"\n\n--------Ford Fulkerson------\n\n";
     cin>>V;
 
-    vector<vector<int>>graph(V);
+    vector<vector<int>>graph(V,vector<int>(V));
 
-    //enter the number of edges in graph
-    int edges,a,b;
-    cin>>edges;
-
-    for(int i=0;i<edges;i++){
-        cin>>a>>b;
-        graph[a].push_back(b);
+    for(int i=0;i<V;i++){
+        for(int j=0;j<V;j++){
+            cin>>flow;
+            graph[i][j]=flow;
+        }
     }
+
 
     int s,t;
     cout<<"Enter source and sink: "; 
     cin>>s>>t;
-    cout<<"The possible maximum flow is "<<fordFulkerson(graph,V,s,t)<<endl;
+    cout<<"\nThe possible maximum flow is "<<fordFulkerson(graph,V,s,t)<<endl;
     return 0;
 }

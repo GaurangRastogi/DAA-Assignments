@@ -16,65 +16,6 @@ struct Edge
     }
 };
 
-
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
-//change variable
    
 struct Vertex
 {

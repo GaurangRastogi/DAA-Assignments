@@ -100,12 +100,13 @@ vector<pair<int, int>> jarvis_march(vector<pair<int, int>> &points)
 
 int main()
 {
-
+    cout<<"Enter the number of points: ";
     int n, x, y;
     cin >> n;
 
-    vector<pair<int, int>> points;
 
+    vector<pair<int, int>> points;
+    cout<<"\n--Enter the points--\n";
     for (int i = 0; i < n; i++)
     {
         cin >> x >> y;
@@ -114,10 +115,10 @@ int main()
 
     vector<pair<int, int>> convex_hull = jarvis_march(points);
 
-    cout<<"Convex Hull for the following points: "<<endl;
+    cout<<"\n\nConvex Hull created by the following points: "<<endl;
     for (auto point : convex_hull)
     {
-        cout << point.first << " " << point.second << endl;
+        cout <<"( "<< point.first << " , " << point.second <<" )"<< endl;
     }
 
     return 0;

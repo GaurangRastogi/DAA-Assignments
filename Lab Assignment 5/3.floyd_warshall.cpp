@@ -28,27 +28,37 @@ void shortest_distance(vector<vector<int>>&cost){
     }
 
 
-    //updation
+    //updation 
     for(int i=0;i<n;i++){
         for(int j=0;j<n;j++){
-            if(cost[i][j]==-1){
+            if(cost[i][j]==1e9){
                 cost[i][j]=-1; //not reachable
             }
         }
+    }
+
+    cout<<"Floyd Warshall distance matrix: \n\n";
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<cost[i][j]<<" ";
+        }
+        cout<<endl;
     }
 
 
     //if negative cycle
     for(int i=0;i<n;i++){
         if(cost[i][i]<0){
-            cout<<"Contains negative cycle";
+            cout<<"\nIt also contains negative cycle";
         }
     }
 
+    return;
 
 }
 
-int floyd_main(vector<vector<int>>&edges,int V,int E){
+void floyd_main(vector<vector<int>>&edges,int V,int E){
 
     vector<vector<int>>adj_matrix(V,vector<int>(V,-1));
 
@@ -66,13 +76,15 @@ int floyd_main(vector<vector<int>>&edges,int V,int E){
 }
 
 int main(){
-    cout<<"-----------Bellman Ford Algorithm----------------\n\n";
+    cout<<"-----------Floyd Warshall Algorithm----------------\n\n";
     int V,E,st,end,weight;
     cout<<"Enter the number of vertex and edges: ";
     cin>>V>>E;
 
 
     vector<vector<int>>edges(E,vector<int>(3));
+
+    cout<<"\n---Enter edge (u,v) and weight---\n";
     for(int i=0;i<E;i++){
         cin>>st>>end>>weight;
         edges[i][0]=st;

@@ -95,17 +95,18 @@ vector<pair<int, int>> graham_scan(vector<pair<int, int>> &points)
         mp[{plr_ang,dis}]=point;
 
     }
+    
 
     vector<pair<int,int>>hull;
 
     for(auto p:mp){
         int h=hull.size();
         pair<int,int>point=p.second;
-        while(h>=2 && orientation_crossProduct(hull[h-2],hull[h-1],point)){
-
+        while(h>=2 && orientation_crossProduct(hull[h-2],hull[h-1],point)!=1){
             hull.pop_back();
-
+            h=hull.size();
         }
+
 
         hull.push_back(point);
     }
@@ -117,23 +118,23 @@ vector<pair<int, int>> graham_scan(vector<pair<int, int>> &points)
 
 int main()
 {
-
+    cout<<"Enter the number of points: ";
     int n, x, y;
     cin >> n;
-
     vector<pair<int, int>> points;
-
+    cout<<"Enter the points \n ";
     for (int i = 0; i < n; i++)
     {
         cin >> x >> y;
         points.push_back({x, y});
     }
-
+     
+    
     vector<pair<int, int>> convex_hull = graham_scan(points);
-
-    for (auto point : points)
+    cout<<"\n\nConvex Hull created by the following points: "<<endl;
+    for (auto point : convex_hull)
     {
-        cout << point.first << " " << point.second << endl;
+       cout <<"( "<< point.first << " , " << point.second <<" )"<< endl;
     }
 
     return 0;
