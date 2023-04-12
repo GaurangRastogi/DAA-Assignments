@@ -17,12 +17,14 @@ int orientation_crossProduct(pair<int, int> &p1, pair<int, int> &p2, pair<int, i
 
     int d = (y3 - y2) * (x2 - x1) - (y2 - y1) * (x3 - x2);
 
+    //counterclock-wise
     if (d > 0)
         return 1;
 
+    //clockwise
     else if (d < 0)
         return -1;
-
+    //collinear
     else
         return 0;
 }
@@ -82,7 +84,8 @@ vector<pair<int, int>> jarvis_march(vector<pair<int, int>> &points)
         for (auto point : points)
         {
             int crs_product = orientation_crossProduct(on_hull, next_point, point);
-
+            //the orientation (on_hull,next_point) to  (next_point,point) is anti-clockwise 
+            //update the next_pont as point
             if (next_point == on_hull || crs_product == 1 || (crs_product==0 && distance(on_hull,point,next_point)==-1))
             {
                 next_point = point;

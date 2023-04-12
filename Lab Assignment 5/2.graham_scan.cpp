@@ -65,12 +65,14 @@ int orientation_crossProduct(pair<int, int> &p1, pair<int, int> &p2, pair<int, i
 
     int d = (y3 - y2) * (x2 - x1) - (y2 - y1) * (x3 - x2);
 
+    //counterclock-wise
     if (d > 0)
         return 1;
 
+    //clockwise
     else if (d < 0)
         return -1;
-
+    //collinear
     else
         return 0;
 }
@@ -102,6 +104,12 @@ vector<pair<int, int>> graham_scan(vector<pair<int, int>> &points)
     for(auto p:mp){
         int h=hull.size();
         pair<int,int>point=p.second;
+
+        //the orientation (hull[h-2],hull[h-1]) to  (hull[h-1],point) is clockwise 
+        //pop-the hull[h-1]
+
+        //in graham scan when you get, direction anti-clockwise stop popping
+        // but in jarvis if you get anti-clock wise keep updating
         while(h>=2 && orientation_crossProduct(hull[h-2],hull[h-1],point)!=1){
             hull.pop_back();
             h=hull.size();
