@@ -35,6 +35,9 @@ vector<vector<int>> nQueen(int n)
 
     vector<vector<int>> chess(n, vector<int>(n, 0));
     vector<int> temp{};
+    //samerow- stores if queen in same row
+    //up stores if queen in (0,0)-(n-1,n-1) =>diagonal
+    //down - stores if queen in (0,n-1)-(n-1,0) => anti-diagonal
     vector<int> samerow(n, 0), up(2 * n - 1, 0), down(2 * n - 1, 0);
     backtrack(chess, 0, n, temp, samerow, up, down);
     return ans;
